@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Pages non indexées (noindex via meta robots)
+Disallow: /mentions-legales/
+Disallow: /politique-confidentialite/
+Disallow: /confirmation/
+
+# Assets
+Disallow: /_astro/
+
+Sitemap: https://borne-recharge-loire-atlantique.fr/sitemap-index.xml

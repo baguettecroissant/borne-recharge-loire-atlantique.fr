@@ -1,0 +1,22 @@
+{
+  "name": "Borne Recharge Loire-Atlantique",
+  "short_name": "Borne Recharge 44",
+  "description": "Installation de borne de recharge (Wallbox) et prise renforcée en Loire-Atlantique (44). Électriciens qualifiés IRVE.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#022c22",
+  "theme_color": "#065F46",
+  "lang": "fr",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/favicon.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon"
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+---
+import config from '../data/config.json';
+import StepsForm from './StepsForm.astro';
+
+interface Props {
+  communeName?: string;
+  categoryName?: string;
+}
+
+const { communeName = config.mainCity, categoryName = "" } = Astro.props;
+
+let titlePrefix = "Installation Borne de Recharge";
+if (categoryName === "Copropriété") {
+  titlePrefix = "Borne de Recharge en Copropriété";
+} else if (categoryName === "Wallbox") {
+  titlePrefix = "Installation de Wallbox Rapide";
+} else if (categoryName === "Prise") {
+  titlePrefix = "Installation de Prise Green'Up";
+}
+---
+
+<style>
+  .hero-with-bg {
+    background: linear-gradient(180deg, rgba(2, 44, 34, 0.98) 0%, rgba(6, 78, 59, 0.94) 100%), url('/images/hero-borne-recharge-loire-atlantique.png') no-repeat center center;
+    background-size: cover;
+    position: relative;
+  }
+  @media (min-width: 993px) {
+    .hero-with-bg {
+      background: linear-gradient(90deg, rgba(2, 44, 34, 0.98) 0%, rgba(6, 78, 59, 0.92) 50%, rgba(6, 78, 59, 0.45) 100%), url('/images/hero-borne-recharge-loire-atlantique.png') no-repeat center center;
+      background-size: cover;
+    }
+  }
+
+  /* Gear motif representing Nantes Machines de l'île (4% opacity) */
+  .hero-motif {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M40 5 L43 15 A25 25 0 0 0 47 16 L55 10 L60 15 L54 23 A25 25 0 0 0 57 27 L67 25 L70 31 L61 37 A25 25 0 0 0 61 43 L70 49 L67 55 L57 53 A25 25 0 0 0 54 57 L60 65 L55 70 L47 64 A25 25 0 0 0 43 65 L40 75 L34 75 L31 65 A25 25 0 0 0 27 64 L19 70 L14 65 L20 57 A25 25 0 0 0 17 53 L7 55 L4 49 L13 43 A25 25 0 0 0 13 37 L4 31 L7 25 L17 27 A25 25 0 0 0 20 23 L14 15 L19 10 L27 16 A25 25 0 0 0 31 15 L34 5 Z M40 28 A12 12 0 1 0 40 52 A12 12 0 1 0 40 28 Z' fill='%23ffffff' fill-opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+    animation: rotateMotif 120s linear infinite;
+  }
+
+  @keyframes rotateMotif {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .aides-badge-pill {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    font-weight: 700;
+    font-size: 11px;
+    padding: 6px 14px;
+    border-radius: 50px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 48px;
+    align-items: center;
+    position: relative;
+    z-index: 3;
+  }
+  .trust-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 30px;
+  }
+  .trust-badges .badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 13.5px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+  .trust-badges .badge svg {
+    width: 18px;
+    height: 18px;
+    color: var(--accent);
+  }
+  @media (max-width: 992px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 35px;
+    }
+    .trust-badges {
+      justify-content: center;
+    }
+  }
+</style>
+
+<section class="hero hero-with-bg">
+  <div class="hero-motif"></div>
+  <div class="container hero-grid">
+    <!-- Left Column -->
+    <div class="hero-content">
+      <div class="aides-badge-pill">Nantes Green Capital : roulez propre, rechargez malin</div>
+      <h1 style="color: white; font-size: 40px; font-family: var(--font-heading); line-height: 1.25; margin-bottom: 20px;">
+        {titlePrefix} à <span style="color: var(--secondary);">{communeName}</span> et dans la <span style="color: var(--secondary);">{config.department}</span>
+      </h1>
+      <p style="font-size: 17px; line-height: 1.65; color: var(--primary-light); margin-bottom: 25px;">
+        Faites installer votre borne de recharge ou prise renforcée par un électricien qualifié IRVE en Loire-Atlantique (44). Estimez vos aides 2026 (crédit d'impôt de 500 €, TVA à 5,5% et programme ADVENIR) et comparez gratuitement jusqu'à 3 devis de professionnels locaux.
+      </p>
+
+      <div class="trust-badges">
+        <div class="badge">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+          <span>Électriciens Qualifiés IRVE 44</span>
+        </div>
+        <div class="badge">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span>Étude &amp; Devis sous 48h</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column -->
+    <div>
+      <StepsForm initialZip={categoryName === "" ? "" : undefined} />
+    </div>
+  </div>
+</section>
